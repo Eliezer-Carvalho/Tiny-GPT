@@ -5,6 +5,7 @@ from tokenizers import Tokenizer
 #import matplotlib.pyplot as plt
 import torch
 import torch.nn as nn
+import torch.nn.functional as FUNCTION
 
 
 tokenizer = Tokenizer.from_file("Os Lusiadas Tokenizer.json")
@@ -76,10 +77,29 @@ xfinal = xemb + pos_emb
 
 
 head_size = 16
-query = nn.Linear (num_embedding, head_size, bias = False)
-key = nn.Linear (num_embedding, head_size, bias = False)
 
-Q = query (xfinal)
+query = nn.Linear (num_embedding, head_size, bias = False) #Aplica uma Regressão Linear
+key = nn.Linear (num_embedding, head_size, bias = False) #Aplica uma Regressão Linear
+value = nn.Linear (num_embedding, head_size, bias = False)
+
+Q = query (xfinal) #O que este token quer saber #B, T, 16
+K = key (xfinal) #O que cada token oferece #B , T, 16
+V = value (xfinal) #Informação que vai ser passada #
+
+scores = Q @ K.transpose (-2, -1) #B,T,16 * B,16,T --> B, T, T
+#@ é diferente de *, @ representa o produto de vetores
+#print (scores[0])
+
+weights = FUNCTION.softmax (scores, dim = -1) #Output são logits
+
+output = weights @ V
+
+nn.Sequential (
+    nn.Linear (num_embedding, 4 * num_embedding),
+    nn.GELU(),
+    nn.Linear (4 * num_embedding, num_embedding)
+)
+
 
 
 '''

@@ -64,3 +64,19 @@ Cada head aprende a olhar para o texto de uma forma diferente.
 | GPT grande  | 32–128+ |
 
 head_size = numero de embediings / numero de heads
+attention não é multiplicação elemento a elemento — é comparação entre todos os tokens através de produto escalar
+
+O problema destes valores. Eles podem ser muito grandes, negativos, instáveis, difíceis de interpretar^
+O que o softmax faz aqui, transforma os scores em probabilidades
+
+Intuição completa da attention até agora
+Q @ Kᵀ → “afinidade”
+softmax → “importância relativa”
+
+O que isto significa na prática
+Esta linha:
+0.546 (token mais importante)
+0.266 (segundo mais importante)
+0.001 (quase ignorado)
+O modelo está literalmente a dizer:
+“vou focar-me muito mais neste token do que nos outros”

@@ -4,6 +4,7 @@ from tokenizers import Tokenizer
 #from tokenizers.trainers import BpeTrainer
 #import matplotlib.pyplot as plt
 import torch
+import torch.nn as nn
 
 
 tokenizer = Tokenizer.from_file("Os Lusiadas Tokenizer.json")
@@ -34,18 +35,18 @@ for j in range (block_size):
 batch_size = 4
 torch.manual_seed(1000)
 
-'''
-def batch (split):
-    dados = dados_treino if split == 'train' else dados_teste
-    indice = torch.randint (0, len(dados) - block_size, (batch_size,))
-    x = torch.stack ([dados [i : i + block_size] for i in indice])
-    y = torch.stack ([dados [i + 1 : i + block_size + 1] for i in indice])
+
+def batch ():
+    posição = torch.randint (0, len(dados_treino) - block_size, (batch_size,)) #Cria um tensor com 4 valores 
+    x = torch.stack ([dados_treino [i : i + block_size] for i in posição]) #Pega nos 4 valores do tensor acima e adiciona 8 e depois vai buscar os tokens ids a essas posições
+    y = torch.stack ([dados_treino [i + 1 : i + block_size + 1] for i in posição]) #Igual só que adiantado mais um
     
     return x, y
 
 
-xb, yb = batch ('train')
+xb, yb = batch ()
 
+'''
 print ('inputs:')
 print (xb.shape)
 print (xb)
@@ -54,8 +55,6 @@ print ('targets:')
 print (yb.shape)
 print (yb)
 '''
-
-
 
 
 

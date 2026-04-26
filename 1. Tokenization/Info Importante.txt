@@ -23,4 +23,10 @@ Outras fases importantes não referidas aqui:
 3. Esta fase não é obrigatória, 90% usa-se um Tokenizer geral
 
 
+block size = quantos tokens o modelo vê numa sequencia (32 - 8000+)
+batch_size = quantas sequencias vê ao mesmo tempo (4 - milhares)
 
+Embedding transforma cada token num vetor de números contínuos
+Embedding transforma “símbolos” em algo que o modelo consegue entender
+Palavras semelhantes ficam com vetores parecidos
+Transformers funcionam com multiplicações, somas e produto escalar e isso só faz sentido com vetores, não com IDs

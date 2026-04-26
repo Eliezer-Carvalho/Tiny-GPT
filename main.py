@@ -22,7 +22,7 @@ n = int (0.9 * len(dados))
 dados_treino = dados[:n]
 dados_teste = dados[n:]
 
-block_size = 8 #context_length
+block_size = 16 #context_length
 
 x = dados_treino [: block_size]
 y = dados_treino [1: block_size + 1]
@@ -44,7 +44,7 @@ def batch ():
     return x, y
 
 
-xb, yb = batch ()
+
 
 '''
 print ('inputs:')
@@ -56,8 +56,30 @@ print (yb.shape)
 print (yb)
 '''
 
+vocab_size = tokenizer.get_vocab_size()
+num_embedding = 32
+
+embedding = nn.Embedding (vocab_size, num_embedding)
+
+xb, yb = batch ()
+
+xemb = embedding (xb)
 
 
+positional_embedding = nn.Embedding(block_size, num_embedding)
+position = torch.arange(block_size)
+pos_emb = positional_embedding(position)
+
+
+xfinal = xemb + pos_emb
+#print (xfinal.shape) #B, T, C (Batch, Sequence Lenght/Block Size, Channels ou Numero de Embeddings)
+
+
+head_size = 16
+query = nn.Linear (num_embedding, head_size, bias = False)
+key = nn.Linear (num_embedding, head_size, bias = False)
+
+Q = query (xfinal)
 
 
 '''

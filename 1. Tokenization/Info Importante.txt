@@ -30,3 +30,37 @@ Embedding transforma cada token num vetor de números contínuos
 Embedding transforma “símbolos” em algo que o modelo consegue entender
 Palavras semelhantes ficam com vetores parecidos
 Transformers funcionam com multiplicações, somas e produto escalar e isso só faz sentido com vetores, não com IDs
+Cada palavra é representada como um ponto num espaço multidimensional, onde a posição tem significado
+No fundo o id 25, passa a ser representado por um vetor de 64 valores
+Os números de embeddings podem ir de 16 a 768 + 
+
+
+
+Positional Embedding no fundo é o que serve para dizer ao modelo a posição das palavras.
+
+
+O que o attention faz (ideia simples)
+Cada token pergunta: “quais os outros tokens desta frase são importantes para mim?”
+
+O que acontece no Attention
+Para cada token:
+olha para todos os outros tokens
+calcula importância (scores)
+faz média ponderada dos outros
+
+Fórmula (sem complicar demasiado) Attention(Q, K, V)
+Q = query (o que este token quer saber)
+K = keys (o que cada token oferece)
+V = values (informação de cada token)
+
+O que é uma “attention head”?
+Uma head é uma versão independente do mecanismo de self-attention
+Cada head aprende a olhar para o texto de uma forma diferente.
+
+| modelo      | heads   |
+| ----------- | ------- |
+| GPT pequeno | 4–8     |
+| GPT médio   | 12–24   |
+| GPT grande  | 32–128+ |
+
+head_size = numero de embediings / numero de heads

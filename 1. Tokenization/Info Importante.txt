@@ -1,3 +1,26 @@
 https://huggingface.co/docs/tokenizers/api/pre-tokenizers#tokenizers.pre_tokenizers.CharDelimiterSplit
-1. Pre tokenizer
-2. Trainer
+1. Pre tokenizer (define como o texto é segmentado antes do modelo de aprendizagem)
+2. Algoritmo (Algoritmo de Aprendizagem)
+
+
+Alguns Pontos Importantes nesta fase:
+
+vocab_size é uma variável importante porque influencia o número final de tokens, por norma é importante estudar esta variável.
+special_tokens é também importante porque define como o algoritmo de aprendizagem vai reagir em certas ocasiões
+
+O tokenizer é treinado num dataset para aprender um vocabulário adaptado
+Após isto temos os Tokens e temos os ID's dos tokens
+
+
+Tokenização é uma forma de compressão estatística do texto
+menos tokens = mais eficiência
+mais tokens = mais detalhe
+
+
+Outras fases importantes não referidas aqui:
+1. Normalization - Nem sempre é obrigatório, depende do objetivo
+2. Falar tokenizer, ids, encode, decode
+3. Esta fase não é obrigatória, 90% usa-se um Tokenizer geral
+
+
+

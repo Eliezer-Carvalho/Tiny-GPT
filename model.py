@@ -200,7 +200,7 @@ if __name__ == "__main__":
     loss_fn = nn.CrossEntropyLoss()
 
 
-    for step in range (1000):
+    for step in range (5000):
 
         inputs, targets = get_batch()
 

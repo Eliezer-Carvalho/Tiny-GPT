@@ -67,6 +67,8 @@ xb, yb = batch ()
 xemb = embedding (xb)
 
 
+
+
 positional_embedding = nn.Embedding(block_size, num_embedding)
 position = torch.arange(block_size)
 pos_emb = positional_embedding(position)

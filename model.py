@@ -248,6 +248,7 @@ output = generate(model, start, 100)
 
 text = tokenizer.decode(output[0].tolist())
 print(text)
+print(sum(p.numel() for p in model.parameters()))
 
 
 

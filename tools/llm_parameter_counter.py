@@ -23,4 +23,4 @@ def PARAM_COUNT (dim_emb, vocab_size, num_blocks):
     
 
 
-PARAM_COUNT (16, 85, 4)
+PARAM_COUNT (256, 85, 4)

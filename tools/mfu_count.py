@@ -11,11 +11,11 @@ def mfu (FLOPs, seconds, FLOPs_Teóricos):
     MFU = FLOPS / FLOPs_Teóricos #Throughput teórico #Percentagem
 
 
-    print (humanize.scientific(FLOPS))
-    print (f"{round(MFU * 100, 3)}%")
+    print (f"Número de FLOPs por Segundo (FLOPS) -> {humanize.scientific(FLOPS)}")
+    print (f"MFU -> {round(MFU * 100, 3)}%")
 
 
-mfu (25e10, 7.5, 65.13e12)
+mfu (9.83e9 * 1000, 108, 65.13e12)
 
 
 #MFLOPs	10e6
